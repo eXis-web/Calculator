@@ -69,7 +69,7 @@ class App extends Component {
     }
 
     this.setState({
-      currentOperand: computation,
+      currentOperand: computation.toString(),
       operation: undefined,
       previousOperand: '',
     }, this.updateDisplay);
@@ -88,10 +88,12 @@ class App extends Component {
   updateDisplay = () => {
     const previousOperandTextElement = document.querySelector('[data-previous-operand]');
     const currentOperandTextElement = document.querySelector('[data-current-operand]');
-
+  
     if (previousOperandTextElement && currentOperandTextElement) {
       previousOperandTextElement.innerText = this.state.previousOperand;
-      currentOperandTextElement.innerText = this.state.currentOperand;
+      currentOperandTextElement.innerText = this.state.operation
+        ? `${this.state.operation} ${this.state.currentOperand}`
+        : this.state.currentOperand;
     }
   };
 
